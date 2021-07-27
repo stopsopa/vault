@@ -1,0 +1,9 @@
+{
+  "name": "@stopsopa/vault",
+  "version": "0.0.1",
+  "description": "Simple lib to fetch data from vault",
+  "main": "index.js",
+  "repository": "git@github.com:stopsopa/vault.git",
+  "author": "Szymon Dzialowski <sdzialowski@gmail.com>",
+  "license": "MIT"
+}

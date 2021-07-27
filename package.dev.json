@@ -1,0 +1,15 @@
+{
+  "name": "@stopsopa/vault",
+  "version": "0.0.1",
+  "description": "Simple lib to fetch data from vault",
+  "main": "index.js",
+  "repository": "git@github.com:stopsopa/vault.git",
+  "author": "Szymon Dzialowski <sdzialowski@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "inspc": "^0.0.19",
+    "jest": "^27.0.6",
+    "nlab": "^0.0.108"
+  }
+}
