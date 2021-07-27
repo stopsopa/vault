@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:stopsopa/vault.git",
   "author": "Szymon Dzialowski <sdzialowski@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "nlab": "^0.0.108"
+  }
 }
