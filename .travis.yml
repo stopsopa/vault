@@ -1,7 +1,5 @@
 language: node_js
 node_js:
-  - 8
-  - 9
   - 10
   - 11
   - 12
@@ -17,10 +15,10 @@ env:
     - TRAVIS=true
 
 before_script:
-  - ls -la
   - rm -rf package-lock.json
   - rm -rf yarn.lock
   - rm -rf node_modules
+  - ls -la
   - yarn add express inspc jest nlab
   
 script:
