@@ -17,6 +17,7 @@ env:
     - TRAVIS=true
 
 before_script:
+  - ls -la
   - yarn add express inspc jest nlab
   
 script:
