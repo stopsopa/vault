@@ -1,6 +1,6 @@
 {
   "name": "vault_prototype",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple lib to fetch data from vault",
   "main": "index.js",
   "repository": "git@github.com:stopsopa/vault_prototype.git",
