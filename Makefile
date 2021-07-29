@@ -18,6 +18,9 @@ pack:
 publish:
 	npm version patch
 	npm publish --access=public
+	echo ""
+	echo visit
+	node bash/node/json/get.js package.json homepage
 
 
 
