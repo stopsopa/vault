@@ -15,13 +15,71 @@ npm install vault_prototype
 
 ```
 
-# AppRole
+# Using token
 
 ```js
 
-yarn add vault_prototype
+const vault_prototype = require('vault_prototype');
 
-npm install vault_prototype
+(async function () {
+
+    try {
+
+        const vault = vault_prototype({
+            apiVersion: 'v1',
+            endpoint: 'http://127.0.0.1:3370',
+            token: 's.Jfium3aoAYNVvFHQpUxB8EGR' ,
+        });
+
+        const secrets = await vault.get(`secret/hello-world/data/test`);
+
+        console.log(secrets)
+    }
+    catch (e) {
+
+        console.log({
+            general_vault_error: e
+        })
+    }
+
+}());
+
+```
+
+# AppRole
+
+https://www.vaultproject.io/docs/auth/approle#via-the-cli-1
+
+```js
+
+const vault_prototype = require('vault_prototype');
+
+(async function () {
+
+    try {
+
+        const vault = vault_prototype({
+            apiVersion: 'v1',
+            endpoint: 'http://127.0.0.1:3370'
+        });
+
+        await vault.generateTokenAppRole({
+            role_id     : process.env.VAULT_ROLE_ID,
+            secret_id   : process.env.VAULT_SECRET_ID,
+        });
+
+        const secrets = await vault.get(`secret/hello-world/data/test`);
+
+        console.log(secrets)
+    }
+    catch (e) {
+
+        console.log({
+            general_vault_error: e
+        })
+    }
+
+}());
 
 ```
 
