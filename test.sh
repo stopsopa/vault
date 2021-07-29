@@ -112,7 +112,6 @@ trap cleanup EXIT
 # ==== run vault ===== vvv
 
 /bin/bash vault/download_vault_binary.sh
-
     
 export VAULT_BINARY="$(cd vault && pwd)/vault"
 

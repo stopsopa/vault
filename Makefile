@@ -11,5 +11,14 @@ testwatch:
 coverage:
 	node coverageserver.js --port 8088 --dir public/coverage
 
+# maintenance	
+pack:
+	npm pack
+
+publish:
+	npm version patch
+	npm publish --access=public
+
+
 
 
