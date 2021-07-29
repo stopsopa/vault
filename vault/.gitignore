@@ -2,4 +2,4 @@
 !.gitignore
 !initvault.sh
 /vault
-!download_vault_binary
+!download_vault_binary.sh
