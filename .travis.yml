@@ -57,5 +57,8 @@ script:
 #after_success:
 #  - cat ./coverage/lcov.info | node node_modules/coveralls/bin/coveralls.js
 
+after_script:
+  - bash <(curl -s https://codecov.io/bash)
+
 
 
