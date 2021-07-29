@@ -33,7 +33,8 @@ const vault_prototype = require('vault_prototype');
 
         const secrets = await vault.get(`secret/hello-world/data/test`);
 
-        console.log(secrets)
+        console.log(secrets);
+        // { password: 'my-long-password', xxx: 'yyy' }
     }
     catch (e) {
 
@@ -71,6 +72,7 @@ const vault_prototype = require('vault_prototype');
         const secrets = await vault.get(`secret/hello-world/data/test`);
 
         console.log(secrets)
+        // { password: 'my-long-password', xxx: 'yyy' }
     }
     catch (e) {
 
