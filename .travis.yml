@@ -27,7 +27,7 @@ matrix:
 #     - node_js: '13'
 #       env: MODE=jest
 #       dist: trusty
-    - node_js: '14'
+    - node_js: '16'
       env: MODE=jest
       dist: trusty
 
