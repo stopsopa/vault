@@ -115,19 +115,19 @@ trap cleanup EXIT
 
     
 export VAULT_BINARY="$(cd vault && pwd)/vault"
-alias vault='$VAULT_BINARY'
 
-# if [ "$TRAVIS" != "" ]; then
-# # else
-#     alias vault='$VAULT_BINARY'
-#     # (
-#     #     cd vault
+if [ "$TRAVIS" = "" ]; then
 
-#     #     mv vault /home/travis/bin/
+    alias vault='$VAULT_BINARY'
+else
+    (
+        cd vault
 
-#     #     ls -la /home/travis/bin/ | grep vault
-#     # )
-# fi
+        cp vault /home/travis/bin/
+
+        ls -la /home/travis/bin/ | grep vault
+    )
+fi
 
 alias
 
