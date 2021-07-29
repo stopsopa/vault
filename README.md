@@ -5,3 +5,23 @@
 
 
 
+# installation
+
+```
+
+yarn add vault_prototype
+
+npm install vault_prototype
+
+```
+
+# AppRole
+
+```js
+
+yarn add vault_prototype
+
+npm install vault_prototype
+
+```
+
