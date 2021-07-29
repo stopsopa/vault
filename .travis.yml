@@ -41,9 +41,9 @@ node_js:
 
 cache: yarn
 
-# env:
-#   global:
-#     - TRAVIS=true
+env:
+  global:
+    - TRAVIS=true
 
 before_script:
   - make yarn

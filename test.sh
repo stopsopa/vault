@@ -7,6 +7,8 @@ function green {
     printf "\e[32m$1\e[0m\n"
 }
 
+echo "PATH: $PATH"
+
 if [ "$1" = "--help" ]; then
 
 cat << EOF
