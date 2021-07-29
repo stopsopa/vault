@@ -17,11 +17,11 @@ env:
     - TRAVIS=true
 
 before_script:
-  - make yarn
+  - yarn add express inspc jest nlab
   
 script:
   - /bin/bash test.sh
-  
+
 after_script:
   - bash <(curl -s https://codecov.io/bash)
 
