@@ -16,6 +16,10 @@ env:
   global:
     - TRAVIS=true
 
+before_install:
+  - rm -rf package-lock.json
+  - rm -rf yarn.lock
+
 before_script:
   - ls -la
   - yarn add express inspc jest nlab
