@@ -17,3 +17,5 @@ test.sh
 testserver.js
 testserver.sh
 yarn.lock
+*.tgz
+*.zip
