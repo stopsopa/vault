@@ -19,3 +19,4 @@ testserver.sh
 yarn.lock
 *.tgz
 *.zip
+yarn.lock
