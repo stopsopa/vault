@@ -7,6 +7,10 @@
   "homepage": "https://github.com/stopsopa/vault_prototype",
   "author": "Szymon Dzialowski <sdzialowski@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.19.1"
+  },
   "dependencies": {
     "nlab": "^0.0.108"
   }

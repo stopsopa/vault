@@ -1,12 +1,16 @@
 language: node_js
-node_js:
-  - 10
-  - 11
-  - 12
-  - 13
-  - 14
-  - 15
-  - 16
+
+matrix:
+  include:
+    - node_js: '8'
+    - node_js: '9' 
+    - node_js: '10'
+    - node_js: '11'
+    - node_js: '12'
+    - node_js: '13'
+    - node_js: '14'
+    - node_js: '15'
+    - node_js: '16'
 
 # cache: yarn
 
@@ -19,7 +23,7 @@ before_script:
   - rm -rf yarn.lock
   - rm -rf node_modules
   - ls -la
-  - yarn add express inspc jest nlab
+  - yarn add express inspc jest@26.6.3
   
 script:
   - /bin/bash test.sh
