@@ -5,9 +5,9 @@
 
 
 
-# installation
+# Installation
 
-```
+```bash
 
 yarn add vault_prototype
 
