@@ -124,7 +124,7 @@ else
 
         mv vault /home/travis/bin/
 
-        ls -la /usr/bin | grep vault
+        ls -la /home/travis/bin/ | grep vault
     )
 fi
 
