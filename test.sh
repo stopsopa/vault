@@ -113,6 +113,9 @@ trap cleanup EXIT
 
 export VAULT_BINARY="$(cd vault && pwd)/vault"
 
+
+echo "MOUNT VAULT >>$TRAVIS<<";
+
 if [ "$TRAVIS" = "" ]; then
     alias vault='$VAULT_BINARY'
 else
@@ -121,8 +124,6 @@ else
 
         mv vault /usr/bin
 
-        echo "FIND VAULT";
-        
         ls -la /usr/bin | grep vault
     )
 fi
