@@ -90,6 +90,8 @@ if [ ! -f "$VAULTSH" ]; then
 fi
 
 function cleanup {
+
+    echo "STARTING CLEANUP PROCEDURE"
     
     set +e;
 
@@ -111,22 +113,23 @@ trap cleanup EXIT
 
 /bin/bash vault/download_vault_binary.sh
 
+    
 export VAULT_BINARY="$(cd vault && pwd)/vault"
+alias vault='$VAULT_BINARY'
 
+# if [ "$TRAVIS" != "" ]; then
+# # else
+#     alias vault='$VAULT_BINARY'
+#     # (
+#     #     cd vault
 
-echo "MOUNT VAULT >>$TRAVIS<<";
+#     #     mv vault /home/travis/bin/
 
-if [ "$TRAVIS" = "" ]; then
-    alias vault='$VAULT_BINARY'
-else
-    (
-        cd vault
+#     #     ls -la /home/travis/bin/ | grep vault
+#     # )
+# fi
 
-        mv vault /home/travis/bin/
-
-        ls -la /home/travis/bin/ | grep vault
-    )
-fi
+alias
 
 vault --version
 
