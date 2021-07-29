@@ -10,7 +10,7 @@ node_js:
   - 15
   - 16
 
-cache: yarn
+# cache: yarn
 
 env:
   global:
