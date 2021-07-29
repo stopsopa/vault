@@ -34,7 +34,7 @@ vault auth enable approle
 vault auth list
 
 vault policy write hello-world - << EOF
-path "secret/hello-world" {
+path "secret/hello-world/*" {
     capabilities = ["read", "list"]
 }
 EOF
