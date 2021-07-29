@@ -113,23 +113,25 @@ export VAULT_BINARY="$(cd vault && pwd)/vault"
 
 alias vault='$VAULT_BINARY'
 
+vault --version
+
 echo VAULT_BINARY "$VAULT_BINARY"
 
 /bin/bash "$VAULTSH" start
 
 sleep 1
 
-VSTATUS="$(curl 0.0.0.0:$VAULT_PORT/ui/ -I | head -n 1 | awk '{ print $2 }')"
+VSTATUS="$(curl 127.0.0.1:$VAULT_PORT/ui/ -I | head -n 1 | awk '{ print $2 }')"
 
 if [ "$VSTATUS" != "200" ]; then
 
-    { red "0.0.0.0:$VAULT_PORT is expected to respond with status code 200, it responded with '$VSTATUS'\n"; } 2>&3    
+    { red "127.0.0.1:$VAULT_PORT is expected to respond with status code 200, it responded with '$VSTATUS'\n"; } 2>&3    
 
     exit 1
 fi
 
+export VAULT_ADDR="http://127.0.0.1:$VAULT_PORT";
 
-export VAULT_ADDR="http://0.0.0.0:$VAULT_PORT";
 export VAULT_TOKEN="$(cat "$VAULT_DIR/_root_token.txt")";
 
 vault status

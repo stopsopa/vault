@@ -8,7 +8,7 @@ Script checking if port is free and can be allocated, usage:
   Mode 1:
 
     node ${__filename} localhost:80   
-    node ${__filename} 0.0.0.0:8080 
+    node ${__filename} 127.0.0.1:8080 
     
     script echos to console 1 if port is free or 0 if port can't be taken (no access or already used)
     
@@ -19,7 +19,7 @@ Script checking if port is free and can be allocated, usage:
   Mode 2:
 
     node ${__filename} localhost:80 -v
-    node ${__filename} 0.0.0.0:8080 -v
+    node ${__filename} 127.0.0.1:8080 -v
     
     script echos human readable message whether port is free or not
        

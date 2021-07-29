@@ -10,7 +10,7 @@ beforeAll(async () => {
 
     const v = vault({
         apiVersion: 'v1',
-        endpoint: `http://0.0.0.0:${process.env.VAULT_PORT}`,
+        endpoint: `http://127.0.0.1:${process.env.VAULT_PORT}`,
         role_id: process.env.VAULT_ROLE_ID,
         secret_id: process.env.VAULT_SECRET_ID,
     });

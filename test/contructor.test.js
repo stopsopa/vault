@@ -10,7 +10,7 @@ beforeAll(() => {
 
     vault({
         apiVersion: 'v1',
-        endpoint: `http://0.0.0.0:${process.env.VAULT_PORT}`,
+        endpoint: `http://127.0.0.1:${process.env.VAULT_PORT}`,
     });
 });
 
