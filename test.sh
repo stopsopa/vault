@@ -122,7 +122,7 @@ else
     (
         cd vault
 
-        mv vault /usr/bin
+        mv vault /home/travis/bin/
 
         ls -la /usr/bin | grep vault
     )
