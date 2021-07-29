@@ -1,3 +1,6 @@
 /public/
 /node_modules/
 /public/coverage/
+/vault/vault.sh
+log.log
+*.zip

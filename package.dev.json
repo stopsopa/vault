@@ -1,5 +1,5 @@
 {
-  "name": "@stopsopa/vault",
+  "name": "vault_prototype",
   "version": "0.0.1",
   "description": "Simple lib to fetch data from vault",
   "main": "index.js",

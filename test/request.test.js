@@ -8,7 +8,7 @@ const log = require('inspc');
 
 const origin = `http://${process.env.HOST}:${process.env.PORT}`;
 
-describe('request.js', () => {
+describe('request.js - transport layer', () => {
 
     it('simple json', done => {
 

@@ -29,7 +29,7 @@ if [ -f node_modules/.bin/jest ]; then  # exist
     { green "node_modules/.bin/jest - exists"; } 2>&3
 else
 
-    { red "\nnode_modules/.bin/jest - doesn't exist\n"; } 2>&3
+    { red "\nnode_modules/.bin/jest - doesn't exist\nrun: make yarn\n"; } 2>&3
 
     exit 1;
 fi
@@ -59,12 +59,94 @@ if [ "$KILLFLAG" = "" ]; then
     exit 1
 fi
 
+if [ "$VAULT_PORT" = "" ]; then
+
+    { red "VAULT_PORT env is not defined\n"; } 2>&3    
+
+    exit 1
+fi
+
+if [ "$VAULT_DIR" = "" ]; then
+
+    { red "VAULT_DIR env is not defined\n"; } 2>&3    
+
+    exit 1
+fi
+
+export VAULT_DIR="$(pwd)/$VAULT_DIR"
+
+echo "VAULT_DIR=$VAULT_DIR"
+
+# make sure to download vault.sh
+VAULTSH="$_DIR/vault/vault.sh"
+
+if [ ! -f "$VAULTSH" ]; then
+
+    { green "downloading vault.sh"; } 2>&3    
+
+    curl http://stopsopa.github.io/pages/vault/vault.sh --output "$VAULTSH"
+fi
+
 function cleanup {
     
+    set +e;
+
     ps aux | grep "$KILLFLAG" | grep -v grep | awk '{print $2}' | xargs kill
+
+    export VAULT_DIR="$_DIR/vault" 
+    
+    (
+        cd "$_DIR/vault" 
+        /bin/bash "$VAULTSH" destroy
+    )
+
+    echo "(export VAULT_DIR=\"$_DIR/vault\" && cd \"$_DIR/vault\" && /bin/bash \"$VAULTSH\" destroy)"
 }
 
 trap cleanup EXIT
+
+# ==== run vault ===== vvv
+
+/bin/bash vault/download_vault_binary.sh
+
+export VAULT_BINARY="$(cd vault && pwd)/vault"
+
+alias vault='$VAULT_BINARY'
+
+echo VAULT_BINARY "$VAULT_BINARY"
+
+/bin/bash "$VAULTSH" start
+
+sleep 1
+
+VSTATUS="$(curl 0.0.0.0:$VAULT_PORT/ui/ -I | head -n 1 | awk '{ print $2 }')"
+
+if [ "$VSTATUS" != "200" ]; then
+
+    { red "0.0.0.0:$VAULT_PORT is expected to respond with status code 200, it responded with '$VSTATUS'\n"; } 2>&3    
+
+    exit 1
+fi
+
+
+export VAULT_ADDR="http://0.0.0.0:$VAULT_PORT";
+export VAULT_TOKEN="$(cat "$VAULT_DIR/_root_token.txt")";
+
+vault status
+
+rm -rf "$VAULT_DIR/logs/initvault.log"
+
+source "$VAULT_DIR/initvault.sh" 1>> "$VAULT_DIR/logs/initvault.log" 2>> "$VAULT_DIR/logs/initvault.log"
+
+vault token lookup
+
+echo == VAULT_ROLE_ID $VAULT_ROLE_ID
+
+echo == VAULT_SECRET_ID $VAULT_SECRET_ID
+
+# ==== run vault ===== ^^^
+
+
 
 /bin/bash "$_DIR/bash/proc/run-with-flag-and-kill.sh" "$KILLFLAG" node testserver.js &
 

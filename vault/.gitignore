@@ -1,0 +1,4 @@
+*
+!.gitignore
+!initvault.sh
+/vault
