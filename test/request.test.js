@@ -25,6 +25,13 @@ describe('request.js - transport layer', () => {
                 delete data.headers["content-length"];
 
                 expect(data).toEqual({
+                    "request": {
+                        "hostname": process.env.HOST,
+                        "port": process.env.PORT,
+                        "path": "/test",
+                        "method": "GET",
+                        "headers": {}
+                    },
                     "status": 200,
                     "headers": {
                         "x-powered-by": "Express",
@@ -65,6 +72,13 @@ describe('request.js - transport layer', () => {
                 delete data.headers["content-length"];
 
                 expect(data).toEqual({
+                    "request": {
+                        "hostname": process.env.HOST,
+                        "port": process.env.PORT,
+                        "path": "/test?a=b&c=d",
+                        "method": "GET",
+                        "headers": {}
+                    },
                     "status": 200,
                     "headers": {
                         "x-powered-by": "Express",
@@ -83,7 +97,7 @@ describe('request.js - transport layer', () => {
                 done()
             }
             catch (e) {
-                
+
                 log.dump({
                     se: se(e)
                 });
@@ -112,6 +126,13 @@ describe('request.js - transport layer', () => {
                 delete data.headers["content-length"];
 
                 expect(data).toEqual({
+                    "request": {
+                        "hostname": process.env.HOST,
+                        "port": process.env.PORT,
+                        "path": "/test?e=f",
+                        "method": "GET",
+                        "headers": {}
+                    },
                     "status": 200,
                     "headers": {
                         "x-powered-by": "Express",
@@ -129,7 +150,7 @@ describe('request.js - transport layer', () => {
                 done()
             }
             catch (e) {
-                
+
                 log.dump({
                     se: se(e)
                 });
@@ -158,6 +179,13 @@ describe('request.js - transport layer', () => {
                 delete data.headers["content-length"];
 
                 expect(data).toEqual({
+                    "request": {
+                        "hostname": process.env.HOST,
+                        "port": process.env.PORT,
+                        "path": "/test?a=b&c=d&e=f",
+                        "method": "GET",
+                        "headers": {}
+                    },
                     "status": 200,
                     "headers": {
                         "x-powered-by": "Express",
@@ -177,7 +205,7 @@ describe('request.js - transport layer', () => {
                 done()
             }
             catch (e) {
-                
+
                 log.dump({
                     se: se(e)
                 });
@@ -202,6 +230,13 @@ describe('request.js - transport layer', () => {
                 delete data.headers["content-length"];
 
                 expect(data).toEqual({
+                    "request": {
+                        "hostname": process.env.HOST,
+                        "port": process.env.PORT,
+                        "path": "/raw",
+                        "method": "GET",
+                        "headers": {}
+                    },
                     "status": 200,
                     "headers": {
                         "x-powered-by": "Express",
@@ -213,7 +248,7 @@ describe('request.js - transport layer', () => {
                 done()
             }
             catch (e) {
-                
+
                 log.dump({
                     se: se(e)
                 });
@@ -292,7 +327,7 @@ describe('request.js - transport layer', () => {
             }
             catch (e) {
 
-                delete e.stack;                                
+                delete e.stack;
 
                 expect(se(e)).toEqual({
                     "name": "Error",
@@ -320,7 +355,18 @@ describe('request.js - transport layer', () => {
             delete data.headers["content-length"];
             delete data.body.headers.host;
 
+            // log(JSON.stringify(data, null, 4))
+
             expect(data).toEqual({
+                "request": {
+                    "hostname": process.env.HOST,
+                    "port": process.env.PORT,
+                    "path": "/jsonobj",
+                    "method": "POST",
+                    "headers": {
+                        "Content-type": "application/json; charset=utf-8"
+                    }
+                },
                 "status": 200,
                 "headers": {
                     "x-powered-by": "Express",
@@ -357,7 +403,7 @@ describe('request.js - transport layer', () => {
             }
             catch (e) {
 
-                delete e.stack;                                
+                delete e.stack;
 
                 expect(se(e)).toEqual({
                     "name": "Error",
